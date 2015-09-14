@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>打印2</title>
+		<link rel="stylesheet" type="text/css" href="styles/order-card-print.css" />
+		<script type="text/javascript" src="scripts/util/card-print.js"></script>
+	</head>
+	<body>
+		<div id="sheet-bg">
+		  <img alt="Gift card" src="images/gift_card.jpg" />
+		  <div id="content">
+		    <p id="receiver"></p>
+		    <div id="body">
+		      <div id="gift-card-text">
+		        <p>  </p>
+		      </div>
+		      <p></p>
+		      <p id="sender"></p>
+		      <p id="validation_code">正品验证序号: 59d60c04</p>
+		    </div>
+		  </div>
+		</div>
+		<div id="control-panel">
+		  <a href="/admin/orders" style="color: blue">回到订单</a>
+		  <form class="form-horizontal">
+		    <div class="control-group">
+		      <label class="control-label" for="receiver-input">抬头</label>
+		      <div class="controls">
+		        <input name="receiver-input" id="receiver-input" type="text">
+		      </div>
+		    </div>
+		
+		    <div class="control-group">
+		      <label class="control-label" for="sender-input">落款</label>
+		      <div class="controls">
+		        <input name="sender-input" id="sender-input" type="text">
+		      </div>
+		    </div>
+		
+		    <div class="control-group">
+		      <label class="control-label" for="body-input">内容</label>
+		      <div class="controls">
+		        <textarea class="input-large" rows="5" name="body-input" id="body-input"></textarea>
+		      </div>
+		    </div>
+		
+		    <div class="control-group">
+		      <label class="control-label" for="font-family-input">字体</label>
+		      <div class="controls">
+		        <select name="font-family-input" id="font-family-input" class="span2">
+		          <option value="方正硬笔楷书简体">方正硬笔楷书简体</option>
+		          <option value="Arial">Arial</option>
+		          <option value="华文楷体">华文楷体</option>
+		        </select>
+		      </div>
+		    </div>
+		
+		    <div class="control-group">
+		      <label class="control-label" for="line-height">行高</label>
+		      <div class="controls">
+		        <input type="" id="line-height" class='slider'/>
+		      </div>
+		    </div>
+		
+		    <div class="control-group">
+		      <label class="control-label" for="font-size">字体大小</label>
+		      <div class="controls">
+		        <input type="" id="font-size" class='slider'/>
+		      </div>
+		    </div>
+		
+		    <div class="control-group">
+		      <label class="control-label" for="font-size">对齐</label>
+		      <div class="controls">
+		        <select name="" id="content-align" class='span2'>
+		          <option value="left">左对齐</option>
+		          <option value="center">居中</option>
+		          <option value="right">右对齐</option>
+		        </select>
+		      </div>
+		    </div>
+		    <div class="control-group">
+		    	<div class="controls">
+		    		<button type="submit">提交</button>
+		    	</div>
+		    </div>
+		  </form>
+		</div>
+	</body>
+</html>

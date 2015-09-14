@@ -1,0 +1,12 @@
+https://github.com/velesin/jasmine-jquery
+http://pivotal.github.io/jasmine/
+https://github.com/pivotal/jasmine-ajax
+
+http://backbonejs.org
+http://learningcn.com/underscore/
+
+http://tinnedfruit.com/2011/04/26/testing-backbone-apps-with-jasmine-sinon-3.html ≤‚ ‘
+http://www.tuicool.com/articles/QziuI3M backboneø‚—ßœ∞-Router
+https://speakerdeck.com/searls/confidencejs ΩÃ≥Ã
+
+http://phpunit.de/manual/3.8/zh_cn/index.html phpunit

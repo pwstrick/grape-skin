@@ -1,0 +1,278 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8"/>
+	<title>用户</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" type="text/css" href="styles/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="styles/bootstrap-responsive.css" />
+	<link rel="stylesheet" type="text/css" href="styles/matrix-style.css" />
+	<link rel="stylesheet" type="text/css" href="styles/matrix-media.css" />
+	<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css"/>
+	<link rel="stylesheet" type="text/css" href="styles/google-fonts.css"/>
+	<link rel="stylesheet" type="text/css" href="scripts/libs/gritter/css/jquery.gritter.css"/>
+	<link rel="stylesheet" type="text/css" href="scripts/libs/select2/css/select2.css"/>
+    <link rel="stylesheet" type="text/css" href="scripts/libs/uniform/themes/default/css/uniform.default.css"/>
+	<!--[if lte IE 8]>
+	<script src="scripts/libs/respond/respond.js" type="text/javascript"></script>
+	<![endif]-->
+	<script src="scripts/libs/modernizr/modernizr.js" type="text/javascript"></script>
+	<script src="scripts/config.js" type="text/javascript"></script>
+	<script src="scripts/libs/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+</head>
+<body>
+	<!--Header-part-->
+	<div id="header">
+	  <h1><a href="dashboard.html">Huali</a></h1>
+	</div>
+	<!--close-Header-part-->
+	<!--top-Header-menu-->
+	<div id="user-nav" class="navbar navbar-inverse">
+	  <ul class="nav">
+	    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon-user"></i>  <span class="text">欢迎admin</span><b class="caret"></b></a>
+	      <ul class="dropdown-menu">
+	        <li><a href="#"><i class="icon-user"></i> 我的信息</a></li>
+	        <li class="divider"></li>
+	        <li><a href="login.html"><i class="icon-key"></i> 退出登录</a></li>
+	      </ul>
+	    </li>
+	    <li class=""><a title="" href="login.html"><i class="icon-share-alt"></i> <span class="text">退出登录</span></a></li>
+	  </ul>
+	</div>
+	<!--close-top-Header-menu-->
+	<!--sidebar-menu-->
+	<div id="sidebar">
+	  <ul>
+	    <li><a href="index.html"><i class="icon-home"></i> <span>控制面板</span></a> </li>
+	    <li><a href="user_list.html"><i class="icon-signal"></i> <span>用户</span></a> </li>
+	    <li class="active"><a href="menu.html"><i class="icon-inbox"></i> <span>菜单管理</span></a> </li>
+	    <li><a href="add_user.html"><i class="icon-th"></i> <span>新建用户</span></a></li>
+	    <li><a href="template.html"><i class="icon-music"></i> <span>模版页面</span></a></li>
+	    <li><a href="city.html"><i class="icon-music"></i> <span>省市区</span></a></li>
+	    <li class="submenu"><a href="#"><i class="icon-fullscreen"></i> <span>订单打印</span></a>
+	      <ul>
+	        <li><a href="order_info.html" target="_blank">订单信息<span class="label label-important">4</span></a></li>
+	        <li><a href="order_print.html" target="_blank">订单图片</a></li>
+	      </ul>
+	    </li>
+	  </ul>
+	</div>
+	<!--sidebar-menu-->
+	<!--main-container-part-->
+	<div id="content">
+		<!--breadcrumbs-->
+		<div id="content-header">
+			  <div id="breadcrumb">
+			  	<a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 控制面板</a>
+			  	<a class="current" href="#">用户</a>
+			  </div>
+		</div>
+		<!--End-breadcrumbs-->
+  		<div class="container-fluid">
+  			<section class="row-fluid">
+				<div>
+					<a href="teacher/add" class="mr5 btn btn-primary" >新建用户</a>
+				</div>
+				<form method="get" accept-charset="utf-8">
+					<article class="widget-box">
+						<section class="widget-content">
+							<div class="controls controls-row">
+								<div class="btn-group mb10" data-toggle="buttons-radio">
+									<a href="#" class="btn btn-info">未完成(100)</a>
+									<a href="#" class="btn btn-info">已完成(2)</a>
+									<a href="#" class="btn btn-info active">已退货(21)</a>
+								</div>
+								<div class="ovh">
+									<div class="span2">
+										<select name="filter">
+											<option value="0">包含</option>
+											<option value="1">等于</option>
+											<option value="2">开头</option>
+											<option value="3">完与</option>
+										</select>
+									</div>
+									<input type="text" class="span3" placeholder="请输入邮箱" name="email">
+								</div>
+								<input type="text" class="span2" placeholder="开始注册时间" name="start" onClick="WdatePicker()">
+								<input type="text" class="span2" placeholder="结束注册时间" name="end" onClick="WdatePicker()">
+								<button class="btn btn-success span1" type="submit" name="">查询</button>
+								<a href="#" class="btn ml5">清除条件</a>
+							</div>
+						</section>
+					</article>
+				</form>
+				<div class="widget-box">
+					<div class="widget-content">
+						<table class="table table-bordered table-striped table-hover">
+							<thead>
+								<tr>
+									<th width="5%"><input type="checkbox"/></th>
+									<th width="35%">
+										<a href="#"><i class="icon-sort"></i>邮箱</a>
+									</th>
+									<th width="20%">
+										<a href="#"><i class="icon-caret-down"></i>角色</a>
+									</th>
+									<th width="20%">上次登录时间</th>
+									<th width="20%">操作</th>
+								</tr>
+							</thead>
+							<tbody data-type="dragsort" data-ajax="ajax/sort.php" data-td="1">
+								<tr data-sort="1" data-id="1">
+									<td><input type="checkbox"/></td>
+									<td>iris@hua.li</td>
+									<td>客服</td>
+									<td>2015年1月22日 15:33</td>
+									<td>
+										<a class="mr5" href="http://school.baiaimama.com/teacher/detail?id=554b3891b743424a578b4695">查看</a>
+										<a class="mr5" href="http://school.baiaimama.com/teacher/add?id=554b3891b743424a578b4695">修改</a>
+										<a data-id="554b3891b743424a578b4695" data-name="xx" class="mr5" data-href="ajax/operate.php" data-type="del" href="javascript:void(0)" data-prompt="您确定这个订单吗？">删除</a>
+									</td>
+								</tr>
+								<tr data-sort="2" data-id="2">
+									<td><input type="checkbox"/></td>
+									<td>iris@hua.li</td>
+									<td><span class="badge">客服</span></td>
+									<td>2015年1月22日 15:33</td>
+									<td>
+										<a class="mr5" href="http://school.baiaimama.com/teacher/detail?id=554b3891b743424a578b4695">查看</a>
+										<a class="mr5" href="http://school.baiaimama.com/teacher/add?id=554b3891b743424a578b4695">修改</a>
+										<a data-id="554b3891b743424a578b4695" data-name="xx" class="mr5" data-href="ajax/operate.php" data-type="del" href="javascript:void(0)">删除</a>
+									</td>
+								</tr>
+								<tr data-sort="3" data-id="3">
+									<td><input type="checkbox"/></td>
+									<td>iris@hua.li</td>
+									<td><span class="badge badge-success">客服</span></td>
+									<td>2015年1月22日 15:33</td>
+									<td>
+										<a class="mr5" href="http://school.baiaimama.com/teacher/detail?id=554b3891b743424a578b4695">查看</a>
+										<a class="mr5" href="http://school.baiaimama.com/teacher/add?id=554b3891b743424a578b4695">修改</a>
+										<a data-id="554b3891b743424a578b4695" data-name="xx" class="mr5" data-href="ajax/operate.php" data-type="del" href="javascript:void(0)">删除</a>
+									</td>
+								</tr>
+								<tr data-sort="4" data-id="4">
+									<td><input type="checkbox"/></td>
+									<td>iris@hua.li</td>
+									<td><span class="badge badge-warning">客服</span></td>
+									<td>2015年1月22日 15:33</td>
+									<td>
+										<a class="mr5" href="http://school.baiaimama.com/teacher/detail?id=554b3891b743424a578b4695">查看</a>
+										<a class="mr5" href="http://school.baiaimama.com/teacher/add?id=554b3891b743424a578b4695">修改</a>
+										<a data-id="554b3891b743424a578b4695" data-name="xx" class="mr5" data-href="ajax/operate.php" data-type="del" href="javascript:void(0)">删除</a>
+									</td>
+								</tr>
+								<tr data-sort="5" data-id="5">
+									<td><input type="checkbox"/></td>
+									<td>iris@hua.li</td>
+									<td><span class="badge badge-important">客服</span></td>
+									<td>2015年1月22日 15:33</td>
+									<td>
+										<a class="mr5" href="http://school.baiaimama.com/teacher/detail?id=554b3891b743424a578b4695">查看</a>
+										<a class="mr5" href="http://school.baiaimama.com/teacher/add?id=554b3891b743424a578b4695">修改</a>
+										<a data-id="554b3891b743424a578b4695" data-name="xx" class="mr5" data-href="ajax/operate.php" data-type="del" href="javascript:void(0)">删除</a>
+									</td>
+								</tr>
+								<tr data-sort="6" data-id="6">
+									<td><input type="checkbox"/></td>
+									<td>iris@hua.li</td>
+									<td><span class="badge badge-info">客服</span></td>
+									<td>2015年1月22日 15:33</td>
+									<td>
+										<a class="mr5" href="http://school.baiaimama.com/teacher/detail?id=554b3891b743424a578b4695">查看</a>
+										<a class="mr5" href="http://school.baiaimama.com/teacher/add?id=554b3891b743424a578b4695">修改</a>
+										<a data-id="554b3891b743424a578b4695" data-name="xx" class="mr5" data-href="ajax/operate.php" data-type="del" href="javascript:void(0)">删除</a>
+									</td>
+								</tr>
+								<tr data-sort="7" data-id="7">
+									<td><input type="checkbox"/></td>
+									<td>iris@hua.li</td>
+									<td><span class="badge badge-inverse">客服</span></td>
+									<td>2015年1月22日 15:33</td>
+									<td>
+										<a class="mr5" href="http://school.baiaimama.com/teacher/detail?id=554b3891b743424a578b4695">查看</a>
+										<a class="mr5" href="http://school.baiaimama.com/teacher/add?id=554b3891b743424a578b4695">修改</a>
+										<a data-id="554b3891b743424a578b4695" data-name="xx" class="mr5" data-href="ajax/operate.php" data-type="del" href="javascript:void(0)">删除</a>
+									</td>
+								</tr>
+								<tr data-sort="8" data-id="8">
+									<td><input type="checkbox"/></td>
+									<td>iris@hua.li</td>
+									<td><span class="badge badge-notice">客服</span></td>
+									<td>2015年1月22日 15:33</td>
+									<td>
+										<a class="mr5" href="http://school.baiaimama.com/teacher/detail?id=554b3891b743424a578b4695">查看</a>
+										<a class="mr5" href="http://school.baiaimama.com/teacher/add?id=554b3891b743424a578b4695">修改</a>
+										<a data-id="554b3891b743424a578b4695" data-name="xx" class="mr5" data-href="ajax/operate.php" data-type="del" href="javascript:void(0)">删除</a>
+									</td>
+								</tr>
+								<tr data-sort="9" data-id="9">
+									<td><input type="checkbox"/></td>
+									<td>iris@hua.li</td>
+									<td><span class="badge badge-remind">客服</span></td>
+									<td>2015年1月22日 15:33</td>
+									<td>
+										<a class="mr5" href="http://school.baiaimama.com/teacher/detail?id=554b3891b743424a578b4695">查看</a>
+										<a class="mr5" href="http://school.baiaimama.com/teacher/add?id=554b3891b743424a578b4695">修改</a>
+										<a data-id="554b3891b743424a578b4695" data-name="xx" class="mr5" data-href="ajax/operate.php" data-type="del" href="javascript:void(0)">删除</a>
+									</td>
+								</tr>
+								<tr data-sort="10" data-id="10">
+									<td><input type="checkbox"/></td>
+									<td>iris@hua.li</td>
+									<td><span class="badge badge-danger">客服</span></td>
+									<td>2015年1月22日 15:33</td>
+									<td>
+										<a class="mr5" href="http://school.baiaimama.com/teacher/detail?id=554b3891b743424a578b4695">查看</a>
+										<a class="mr5" href="http://school.baiaimama.com/teacher/add?id=554b3891b743424a578b4695">修改</a>
+										<a data-id="554b3891b743424a578b4695" data-name="xx" class="mr5" data-href="ajax/operate.php" data-type="del" href="javascript:void(0)">删除</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="alert alert-info alert-nolist">
+							<h4 class="alert-heading">暂无数据</h4>
+						</div>
+						<div class="pagination alternate">
+							<span>共12322条信息</span>
+							<ul>
+								<li class="disabled"><a href="javascript:void(0)">上一页</a></li>
+								<li><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li class="active"><a href="#">5</a></li>
+								<li><a href="#">6</a></li>
+								<li><a href="#">7</a></li>
+								<li><a href="#">8</a></li>
+								<li><a href="#">下一页</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+	<!--end-main-container-part-->
+	<!--Footer-part-->
+	<div class="row-fluid">
+	  <div id="footer" class="span12"> 2015 &copy; Huali Admin. Brought to you by</div>
+	</div>
+	<aside class="mask_layer">
+		<p>正在加载中...</p>
+		<div class="spinner_rect">
+		  <div class="rect1"></div>
+		  <div class="rect2"></div>
+		  <div class="rect3"></div>
+		  <div class="rect4"></div>
+		  <div class="rect5"></div>
+		</div>
+	</aside>
+	<!--end-Footer-part-->
+	<script src="scripts/libs/jquery/jquery.js" type="text/javascript"></script>
+	<script src="scripts/libs/uniform/jquery.uniform.js" type="text/javascript"></script>
+	<script src="scripts/libs/select2/select2.js" type="text/javascript"></script>
+	<script src="scripts/views/util/formView.js" type="text/javascript"></script>
+	<script src="scripts/libs/require/require.js" type="text/javascript" data-main="scripts/app/list/main"></script>
+</body>
+</html>

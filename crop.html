@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+	<head>
+		<meta charset="utf-8">
+		<title>图片裁剪</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="styles/bootstrap.css" type="text/css" rel="stylesheet">
+		<link href="styles/bootstrap-responsive.css" type="text/css" rel="stylesheet">
+		<link href="styles/matrix-style.css" type="text/css" rel="stylesheet">
+		<link href="font-awesome/css/font-awesome.css" type="text/css" rel="stylesheet">
+		<!--树形结构插件样式 可酌情添加-->
+		<link href="scripts/libs/cropzoom/css/jquery.cropzoom.css" type="text/css" rel="stylesheet">
+		<link href="scripts/libs/cropzoom/css/jquery-ui-1.7.2.custom.css" type="text/css" rel="stylesheet">
+		<script type="text/javascript" src="scripts/libs/modernizr/modernizr.js"></script>
+		<!--[if lte IE 8]>
+		<script src="scripts/libs/respond/respond.js" type="text/javascript"></script>
+		<![endif]-->
+		<script type="text/javascript" src="scripts/config.js"></script>
+	</head>
+	<body>
+		<div class="crop-boxes" data-img="http://admin.huali.net/resource/crop.jpg" data-img-width="1024" data-img-height="768" data-post="/php/resize_and_crop.php">
+            <div name="crop_container" class="l"></div>
+            <div class="crop-result">
+                <div class="txt">裁剪图片在此</div>
+            </div>
+        </div>
+		<script src="scripts/libs/require/require.js" type="text/javascript" data-main="scripts/app/crop/main"></script>
+	</body>
+</html>

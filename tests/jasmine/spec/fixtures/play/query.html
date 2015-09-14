@@ -1,0 +1,36 @@
+<div class="mb10" id="filter_condition"><label class="title_label">增加过滤器：</label>
+		<select name="filter">
+			<option value =""></option>
+			<option value ="order_id">订单编号</option>
+			<option value ="user_order_mobile">点烟人</option>
+		</select>
+
+		<div id="order_id" class="mb10 noDisplay">
+				<label class="title_label"></label>
+				<input type="checkbox"/>订单编号
+				<select>
+					<option value ="3">等于</option>
+					<option value ="7">不等于</option>
+					<option value ="5">包含</option>
+					<option value ="6">不包含</option>
+				</select>
+				<input type="text" value="1"/>
+		</div>
+		<div id="user_order_mobile" class="mb10 noDisplay">
+				<label class="title_label"></label>
+				<input type="checkbox"/>商店名称
+				<select>
+					<option value ="3">等于</option>
+					<option value ="7">不等于</option>
+					<option value ="5">包含</option>
+					<option value ="6">不包含</option>
+				</select>
+				<input type="text" value="2"/>
+		</div>
+	<label class="title_label"></label><input type="button" value="查找" id="btnQuery"/>
+</div>
+<div class="columns mb10"><label class="title_label">字段选择：</label>
+		<input type="checkbox" value="order_id" />订单编号&nbsp;
+		<input type="checkbox" value="user_order_mobile" />点烟人手机&nbsp;
+		<input type="checkbox" value="order_create_time" />点烟时间&nbsp;
+</div>

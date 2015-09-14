@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8"/>
+	<title>test</title>
+	<script src="../../optimize/libs/jquery/jquery.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#btnObject').click(function() {
+				$.post('php/test1.php', {data:[{question:1, answer: '平问', option:10}, {question:12, answer: '猪猪', option:5}]}, function() {
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<h1>post传递对象</h1>
+	<div>
+		<input type="button" id="btnObject" value="ajax"/>
+	</div>
+</body>
+</html>
