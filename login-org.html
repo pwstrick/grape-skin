@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8"/>
+	<title>登录</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" type="text/css" href="styles/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="styles/bootstrap-responsive.css" />
+	<link rel="stylesheet" type="text/css" href="styles/matrix-login-org.css" />
+	<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css"/>
+	<script src="scripts/libs/modernizr/modernizr.js" type="text/javascript"></script>
+	<!--[if lte IE 8]>
+	<script src="scripts/libs/respond/respond.js" type="text/javascript"></script>
+	<![endif]-->
+	<script src="scripts/config.js" type="text/javascript"></script>
+</head>
+<body>
+	<div id="loginbox">
+    <article id="loginform" class="form-vertical">
+			<div class="control-group normal_text"><h3><img src="images/logo-org.png" alt="Logo" /></h3></div>
+            <div class="control-group">
+              <div class="controls">
+                  <div class="main_input_box">
+                      <span class="add-on bg_lg"><i class="icon-user"></i></span><input type="text" placeholder="Username"  id="name"/>
+                  </div>
+              </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                  <div class="main_input_box">
+                      <span class="add-on bg_ly"><i class="icon-lock"></i></span><input type="password" placeholder="Password" id="pwd"/>
+                  </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <span class="pull-left"><a href="javascript:void(0)" class="flip-link btn btn-info" id="to-recover">Lost password?</a></span>
+                <span class="pull-right"><a href="javascript:void(0)" class="btn btn-success" id="btnLogin"/>Login</a></span>
+            </div>
+    </article>
+    <article id="recoverform" class="form-vertical">
+				<p class="normal_text">Enter your e-mail address below and we will send you instructions how to recover a password.</p>
+        <div class="controls">
+          <div class="main_input_box">
+            <span class="add-on bg_lo"><i class="icon-envelope"></i></span><input type="text" placeholder="E-mail address" />
+          </div>
+        </div>
+        <div class="form-actions">
+          <span class="pull-left"><a href="javascript:void(0)" class="flip-link btn btn-success" id="to-login">&laquo; Back to login</a></span>
+          <span class="pull-right"><a href="javascript:void(0)" class="btn btn-info" id="btnRecover"/>Recover</a></span>
+        </div>
+    </article>
+		<div class="alert alert-error hide" id="prompt"></div>
+  </div>
+	<script src="scripts/libs/require/require.js" type="text/javascript" data-main="scripts/app/public/main"></script>
+</body>
+</html>
