@@ -71,7 +71,7 @@
 		<!--End-breadcrumbs-->
   		<div class="container-fluid">
   			<div class="row-fluid">
-  			<form action="ajax/operate.php" id="validate" class="form-horizontal validate" method="post" data-uploadify="upload_images,cover" data-ueditor="txtContent" data-hiddeniframe="selectCategory" data-href="index.html" data-city="province" data-type="form">
+  			<form action="ajax/operate.php" data-prompt-id="prompt2" id="validate" class="form-horizontal validate" method="post" data-uploadify="upload_images,cover" data-ueditor="txtContent" data-hiddeniframe="selectCategory" data-href="index.html" data-city="province" data-type="form">
   				<!-- widget-box-->
 				<section class="widget-box">
 					<header class="widget-title">
@@ -374,10 +374,35 @@
 					<button class="btn btn-success" type="submit">保存</button>
 					<a href="javascript:history.go(-1)" data-type="edit_go_back" class="btn btn-primary">返回</a>
 				</fieldset>
-				<fieldset class="form-actions">
+				<!--
+                <fieldset class="form-actions">
 					<button class="btn btn-success" type="submit">保存2</button>
 				</fieldset>
+                -->
 			</form>
+			<!--Form2-->
+			<form action="ajax/operate.php" data-prompt-id="prompt3" id="validate3" class="form-horizontal validate" method="post">
+  				<!-- widget-box-->
+				<section class="widget-box">
+					<header class="widget-title">
+						<span class="icon"><i class="icon-align-justify"></i></span>
+						<h5>次要信息</h5>
+					</header>
+					<!-- widget-content-->
+					<div class="widget-content nopadding">
+						<fieldset class="control-group">
+							<label class="control-label">帐号</label>
+							<div class="controls">
+								<input type="text" class="span4" name="account4"/>
+							</div>
+						</fieldset>
+						<fieldset class="form-actions">
+							<button class="btn btn-success" type="submit">保存</button>
+						</fieldset>
+					</div>
+				</section>
+			</form>
+			<!--end-Form2-->
 			</div>
 		</div>
 	</div>

@@ -23,7 +23,7 @@ define(function() {
 		ueditorUpload: 'php/action_upload.php',//ueditor编辑器上传地址
 		ajaxHomeOrder: 'ajax/home_order.php',//控制面板ajax获取订单
 		ajaxHomeUser: 'ajax/home_user.php',//控制面板ajax获取用户
-		ajaxHomeChart: 'ajax/home_chart',//控制面板ajax获取图表
+		ajaxHomeChart: 'ajax/home_chart.php',//控制面板ajax获取图表
 		resultSuccess: 1,
 		resultFailure: 0,
 		rules:['valueNotEquals', 'isTime', 'regexpTo', 'confirmTo', 'required', 'remote', 'email', 'url', 'date', 
