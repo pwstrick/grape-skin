@@ -71,8 +71,11 @@ define([
 		dialog(attrs).showModal();
 	};
 	layer.close = function(attrs) {//iframe弹框 层中关闭事件绑定
-		if(top.dialog == undefined) return;
-		var topDialog = top.dialog.get(window);//从父级页面传过来的参数
+		var current = top.dialog || window.parent.dialog;//页面标签模式中会iframe调用iframe
+		if(current == undefined) {
+			return;
+		}
+		var topDialog = current.get(window);//从父级页面传过来的参数
 		if(attrs['data'] == undefined)
 			attrs['data'] = '';
 		if(attrs['btn'] == undefined) {

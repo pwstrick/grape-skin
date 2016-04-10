@@ -30,6 +30,7 @@ define([
 		});
 		$province.on('change', function() {
 			_change($city, $(this));
+			_change($district, $(this), true);
 		});
 		
 		//初始化市
@@ -55,7 +56,7 @@ define([
 			$object.append('<option value='+key+'>'+value+'</option>');
 		});
 	}
-	function _change($target, $current) {
+	function _change($target, $current, clear) {
 		var url = $target.data('changeUrl');
 		var params = {};
 		$.each($target.data(), function(key, value) {
@@ -63,7 +64,16 @@ define([
 				return;
 			params[key] = value;
 		});
+		//console.log($target)
 		$target.find('option:not(:first)').remove();
+		var first_text = $target.find('option:first').text();
+		//将span中的内容改成选项一的text
+		var $span = $target.next('span').find('.select2-selection__rendered');
+		$span.html(first_text).end().attr('title', first_text);
+		if(clear == true) {
+			//仅仅做清空操作，不做ajax请求 选择省的时候 将市和区清空
+			return;
+		}
 		var fn = function(json) {
 			_bind(json, $target);
 		};

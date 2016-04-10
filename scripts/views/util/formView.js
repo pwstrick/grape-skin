@@ -1,5 +1,34 @@
 $(document).ready(function() {
-	$('select:not([data-ajax-change=true])').select2();
+	$('select:not([data-ajax-change=true])').each(function() {
+		var $this = $(this);
+		var ajax = $this.data('aurl');//ajax请求地址
+		var reload = $this.data('reload');
+		if(ajax) {
+			var params = {};
+			$.each($this.data(), function(key ,value) {
+				if(key == 'select2') {
+					return;
+				}
+				params[key] = value;
+			});
+			
+			$this.change(function() {
+				$.extend(true, params, {value:$(this).val()});			
+				//params['value'] = $(this).val();
+				$.post(ajax, params, function(data) {
+					var json = eval('('+data+')');
+					if(json.result == 1 && reload) {
+						setTimeout(function() {
+							window.location.reload();
+						}, 2000)
+					}
+					alert(json.msg);
+				});
+			});
+		}
+		$this.select2();
+	});
+	
 	$('input[type=checkbox],input[type=radio],input[type=file]:not(.uploadify-file)').uniform();
 	
 	if($('select[name=province]').length > 0) {

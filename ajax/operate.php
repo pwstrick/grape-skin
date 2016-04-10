@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * result 1:正常 0:失败 2:跳转 
+ */
 $result = array(
 	'msg' => '操作成功！',
 	'result' => '1',

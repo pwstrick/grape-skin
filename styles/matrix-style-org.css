@@ -13,7 +13,7 @@ body {
 	overflow-x: hidden;
 	margin-top: -10px; font-family: 'Open Sans', sans-serif; font-size:12px; color:#666;
 }
-a{color:#666;}
+a{color:#0088cc;}
 a:hover, a:focus {
 	text-decoration: none; color:#28b779;
 }
@@ -123,7 +123,7 @@ hr{ border-top-color:#dadada;margin-top:10px}
 	margin-left:5px;
 }
 #user-nav > ul > li > a:hover, #user-nav > ul > li.open > a {
-	color: #ffffff;  background:#7b8389;
+	color: #ffffff;  background:#000;
 }
 #user-nav > ul > li > a > i, #sidebar li a i {
 	opacity: .5;
@@ -1073,6 +1073,12 @@ div.dataTables_wrapper .ui-widget-header {
 	vertical-align: middle;
 	word-wrap: break-word;
 	word-break:break-all; 
+}
+.table td a.warning{
+	color:#faa732;
+}
+.table td a.warning:hover, .table td a.warning:focus {
+	color:#f89406;
 }
 .table td.left, .table td.menu-expand{
 	text-align: left;

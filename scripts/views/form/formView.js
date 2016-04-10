@@ -52,7 +52,7 @@ define([
 				return false;
 			});
 		},
-		btn_validate: function($form) {//通用按钮验证
+		btn_validate: function($form) {//通用按钮验证并提交
 			var _model = this.model;
 			//初始化form中错误提示标签
 			var $submit = $form.find(':submit');
@@ -97,13 +97,25 @@ define([
 				if(comUtil.isJsonSuccess(json)) {
 					var href = $form.data('href');//如果不是弹出层
 					var layer = $form.data('layer');//如果是弹出层
+					var reload = $form.data('reload');//当前页面刷新
+					var close = $form.data('close');//iframe页面关闭
 					//如果有href 就做跳转
 					if(href !== undefined){
 						comUtil.setReloadTimeout(500, href);
 					}else if(layer != undefined && layer === true)//关闭弹出层
 						dialogView.close({'data':json});
-//					else
-//						comUtil.setReloadTimeout();//TODO
+					if(reload)
+						comUtil.setReloadTimeout();
+					if(close) {
+						//console.log(window.frameElement.id)
+						var i = '#breadcrumb li[data-target=#'+window.frameElement.id+']>i';
+						var parent = window.parent.document;
+						//var scrollTop = 0;
+						setTimeout(function() {
+							$(parent).scrollTop(0);
+							$(i, parent).click();
+						}, 500);
+					}
 				}
 				viewUtil.errorSelector = '#'+promptId;
 				//var others = {id:'prompt_'+$form.attr('id'), direction:'next', container:$form.find(':submit')};
@@ -116,7 +128,8 @@ define([
 			if($form.length == 0) {
 				return;
 			}
-			var topDialog = top.dialog.get(window);//从父级页面传过来的参数
+			var current = top.dialog || window.parent.dialog;//页面标签模式中会iframe调用iframe
+			var topDialog = current.get(window);//从父级页面传过来的参数
 			var value = topDialog.data.value;
 			//给UL赋值
 			$('#'+treeId).attr('data-value', value);
@@ -125,7 +138,7 @@ define([
 			//关闭按钮
 			dialogView.close({'btn':$form.find('[name=close]:button')});
 		},
-		form_btn: function() {//form表单下面的按钮
+		form_btn: function() {//form表单下面的特殊按钮绑定
 			var _model = this.model;
 			//克隆按钮
 			$('form').delegate('[data-type="clone"]', 'click', function() {
@@ -152,6 +165,7 @@ define([
 					new_names.push(name);
 					$clone.attr('name', name);
 					$clone.find('[type=number],:text').val('');
+					$clone.find('textarea').text('');
 					$clone.insertBefore($container);
 					$last = $clone;
 				});

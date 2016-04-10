@@ -19,9 +19,107 @@ define([
 			this.asyn();
 			//this.editGoBack();
 			this.formchange();
+			this.menu();
 			domReady(function () {
 				$('.mask_layer').remove();
 			});
+		},
+		menu: function(){
+			$('.menu-tabs').on('click', 'li', function() {
+				var $this = $(this);
+				var target = $this.data('target');
+				$this.siblings().removeClass('active').end().addClass('active');
+				$(target).siblings().hide().end().show();
+			});
+			//标签模式 关闭按钮
+			$('.menu-tabs').on('click', 'li>i', function() {
+				var $parent = $(this).parent();
+				var siblings_num = $parent.siblings().length;
+				var target = $parent.data('target');
+				
+				var prev = $parent.prev();
+				var next = $parent.next();
+				if(prev.length > 0) {
+					prev.click();
+				}else if(next.length > 0) {
+					next.click();
+				}
+				if(siblings_num == 0) {
+					
+				}
+				$parent.remove();
+				$(target).remove();
+				return false;
+			});
+			//包括按钮与列表页面中的链接
+			$('[data-type=iframe],[data-type=aiframe]').click(function() {
+				var $this = $(this);
+				var parent = window.parent.document;
+				var $fluid = $(parent).find('#row_fluid');
+				var order = $fluid.children(':last').data('order');
+				var $ul = $(parent).find('#breadcrumb').find('ul');
+				order++;
+				var height = $this.data('height') || 1000;
+				
+				var filters = ['title', 'href', 'type'];//过滤属性
+				var href = $this.data('href') || $this.attr('href');//超链接
+				var params = [];
+				var datas = $this.data();//自身属性
+				$.each(datas, function(key, value) {
+					if($.inArray(key, filters) >= 0)
+						return;
+					params.push(key +'='+ encodeURIComponent(value));
+				});
+				if($this.data('type') == 'iframe') {
+					datas = $('table :checkbox:checked').data() || null;
+					//判断是否需要指定某个下拉框
+					if($this.data('check') === true) {
+						if(!datas) {
+							alert($this.data('message') || '请选中一行');
+							return;
+						}
+					}
+					if(!!datas) {
+						$.each(datas, function(key, value) {
+							if($.inArray(key, filters) >= 0)
+								return;
+							params.push(key +'='+ encodeURIComponent(value));
+						});
+					}
+				}
+				
+				params = params.join('&');
+				if(params.length > 0) {
+					if(href.indexOf('?') > -1) {
+						href += '&'+params;
+					}else {
+						href += '?'+params;
+					}
+				}
+				
+				var iframe = $('<iframe>').attr({
+					"id":"iframe"+order, "data-order":order, "frameborder":0,
+					"src":href, "width":"100%", "height":height});
+				$fluid.append(iframe);
+				var title = $this.data('title');
+				var $li = $('<li data-target="#iframe'+order+'">'+title+'<i class="icon-remove"></i></li>');
+				$ul.append($li);
+				$(parent).find('.menu-tabs>li:last').click();
+				//$li.click();
+				return false;
+			});
+//			function setIframeHeight(iframe) {
+//              var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+//              
+//              if (iframeWin.document.body) {
+//              	var height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+//                  iframe.height = height;
+//              }
+//          };
+//          window.onload = function () {
+//              setIframeHeight(document.getElementById('iframe1'));
+//              setIframeHeight(document.getElementById('iframe2'));
+//          };
 		},
 		formchange: function() {
 			var _this = this;

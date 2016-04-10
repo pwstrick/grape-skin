@@ -77,9 +77,9 @@ define([
 			if($form.hasClass('validate')) {
 				//var special_inputs = {ueditors:input_ueditors}
 				view.btn_validate($form);
-				view.form_btn();
 			}
 		});
+		view.form_btn();//只需绑定一次
   };
   return { 
     initialize: initialize
