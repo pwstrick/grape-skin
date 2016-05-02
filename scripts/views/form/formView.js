@@ -3,7 +3,9 @@ define([
 	'comUtil',
 	'viewUtil',
 	'dialogView',
-	'select2'
+	'select2',
+	'uniform',
+	'autocompleter'
 ], function (Backbone, comUtil, viewUtil, dialogView) {
 	var menu = Backbone.View.extend({
 		el: $('body'),
@@ -166,6 +168,17 @@ define([
 					$clone.attr('name', name);
 					$clone.find('[type=number],:text').val('');
 					$clone.find('textarea').text('');
+					//checkbox复制
+					var $checkboxs = $clone.find(':checkbox');
+					if($checkboxs.length > 0) {
+						$checkboxs.each(function() {
+							var $checkbox = $(this);
+							var $label = $checkbox.closest('label');
+							var html = $label.text();
+							$label.html('').append($checkbox).append(html).find(':checkbox').uniform();
+						});
+					}
+
 					$clone.insertBefore($container);
 					$last = $clone;
 				});
@@ -213,7 +226,14 @@ define([
 				
 				dialogView.confirm(prompt, okFn);
 			});
-			
+			$('form').find('[data-type="autocomplete"]').each(function() {
+				var $this = $(this),
+					data = $this.data();
+				if(data['customClass'])
+					data['customClass'] = data['customClass'].split(',');
+				$this.autocompleter(data);
+				$this.siblings('.autocompleter').width($this.outerWidth());
+			});
 		}
 	});
 	return menu;

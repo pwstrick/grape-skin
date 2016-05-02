@@ -1210,6 +1210,9 @@ form {
 	padding: 10px 0;
 	overflow:hidden
 }
+.form-horizontal .controls.nohidden {
+	overflow:visible;
+}
 .form-horizontal .controls-info {
 	padding: 15px 0;
 	font-size: 14px;
@@ -1876,4 +1879,7 @@ label.dib{
 }
 .controls-row label.dib:first-child{
   margin-left: 0;
+}
+.autocomplete-container {
+	position: relative;
 }

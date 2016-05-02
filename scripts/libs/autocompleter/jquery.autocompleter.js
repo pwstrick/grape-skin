@@ -1,3 +1,6 @@
+/**
+ * https://github.com/ArtemFitiskin/jquery-autocompleter
+ */
 ;(function ($, window) {
     "use strict";
 
