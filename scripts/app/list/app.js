@@ -12,6 +12,7 @@ define([
 		view.tableDeleteBtn();//通用删除
 		viewUtil.selectAll();//选中全部
 		view.dragsort();
+		view.listBtn();//与多选框配合按钮
   };
   return { 
     initialize: initialize

@@ -18,6 +18,33 @@ define([
 				modelUtil.listDelPost($('table.table>tbody>tr>td'), dialogView);
 			}
 		},
+		listBtn: function() {//与全选框配合
+			$('button[data-type=listbtn]').click(function() {
+				var ids = [], $this = $(this);
+				var id = $this.attr('id');
+				var column = $this.data('column') || 'ids[]', prompt = $this.data('confirm');
+				if(!confirm(prompt)) {
+					return;
+				}
+				$(':checkbox[data-btn='+id+']').each(function() {
+					if(this.checked) {
+						ids.push($(this).val());
+					}
+				});
+				var ajax = $this.data('ajax');
+				var fn = function(json) {
+					if($this.data('reload')) {
+						location.reload();
+					}
+				};
+				if(ids.length == 0) {
+					return;
+				}
+				var params = $this.data(); //默认值
+				params[column] = ids;
+				modelUtil.comPost(ajax, $this, params, fn);
+			});
+		},
 		dragsort: function() {//拖动排序
 			var $drag = $('[data-type=dragsort]');
 			var trs = $drag.children('tr');
