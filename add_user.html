@@ -73,7 +73,7 @@
 		<!--End-breadcrumbs-->
   		<div class="container-fluid">
   			<div class="row-fluid">
-  			<form action="ajax/operate.php" data-prompt-id="prompt2" id="validate" class="form-horizontal validate" method="post" data-uploadify="upload_images,cover" data-ueditor="txtContent" data-hiddeniframe="selectCategory" data-href="index.html" data-city="province" data-type="form">
+  			<form action="ajax/operate.php" data-prompt-id="prompt2" id="validate" class="form-horizontal validate" method="post" data-uploadify="upload_images,cover,upload_files" data-ueditor="txtContent" data-hiddeniframe="selectCategory" data-href="index.html" data-city="province" data-type="form">
   				<!-- widget-box-->
 				<section class="widget-box">
 					<header class="widget-title">
@@ -266,16 +266,22 @@
 					<!-- widget-content-->
 					<div class="widget-content nopadding">
 						<fieldset class="control-group">
-							<label class="control-label">图片</label>
+							<label class="control-label">上传图片</label>
 							<div class="controls">
-								<input type="file" id="upload_images" data-ids="" data-urls="" data-queuelimit="1" class="uploadify-file hide"/>
+								<input type="file" id="upload_images" data-ids="" data-urls=""  class="uploadify-file hide"/>
 								<span class="help-block">data-queuelimit控制上传的数量，data-ids与data-urls用于初始化图片列表，例如2232,4345与upload/2015/02/21/14245218522031.jpg,upload/2015/02/21/14245268831504.jpg</span>
 							</div>
 						</fieldset>
 						<fieldset class="control-group">
 							<label class="control-label"><span class="must_label">*</span>封面</label>
 							<div class="controls">
-								<input type="file" id="cover" data-ids="" data-urls="" class="uploadify-file hide" data-required="true" data-required-message="请选择封面" data-crop="true" data-crop-url="crop.html"/>
+								<input type="file" id="cover" data-ids="" data-urls="" class="uploadify-file hide" data-required="true" data-queuelimit="1" data-required-message="请选择封面" data-crop="true" data-crop-url="crop.html"/>
+							</div>
+						</fieldset>
+						<fieldset class="control-group">
+							<label class="control-label">上传文件</label>
+							<div class="controls">
+								<input type="file" id="upload_files" data-ids="" data-urls="" data-filetypes="*" class="uploadify-file hide" data-upload="file" data-ajax="php/action_upload2.php" data-queuelimit="1"/>
 							</div>
 						</fieldset>
 					</div>

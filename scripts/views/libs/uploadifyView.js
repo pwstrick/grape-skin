@@ -10,15 +10,74 @@ define([
 	*/
 	function container(div, url, imageid, is_crop) {
 		var inner = $('<div>');
-		inner.append($('<img>', {src:url}));
+		//判断后缀
+		var exts = url.split('.'),
+			length = exts.length
+			ext = exts[length - 1];
+		if(ext == 'git' || ext == 'jpg' || ext == 'png' || ext == 'bmp' || ext == 'jpeg') {
+			inner.append($('<img>', {src:url}));
+		}else {
+			var segs = url.split('/');
+			inner.append(segs[segs.length-1]);
+		}
+		
 		if(is_crop === true) {
 			inner.append($('<button>',{'class':'btn btn-info', 'type':'button', 'data-id':imageid}).html('裁剪'));
 		}
 		inner.append($('<button>',{'class':'btn btn-warning', 'type':'button', 'data-id':imageid}).html('删除'));
 		div.append(inner);
 	};
-	
-	layer.uploadImages = function(btn) {//设置快速回复编辑框
+//	layer.uploadFiles = function(btn) {//上传文件
+//		var id = "#"+btn;
+//		var $this = $(id);
+//		if($this.length == 0) {//不存在
+//			return;
+//		}
+//		var parent =  $this.parent();
+//		var button =  $this.siblings(':button');//上传按钮
+//		var div =  $this.siblings('div.uploadify-upload-files');//已上传的文件列表
+//		var hidden =  $this.siblings('input[type=hidden]');//隐藏域按钮保存file的ID
+//		var initImageID = $(id).data('ids');
+//		var initImageUrl = $(id).data('urls');
+//		var queueSizeLimit = $(id).data('queuelimit');
+//		var fileTypes = $this.data('filetypes') || '*';
+//		//验证参数添加
+//		var attrs = {type:'hidden', id:btn+'_hidden', name:btn+'_hidden'};
+//		var hiddenn_attrs = comUtil.getValidateAttrs($(id), attrs);
+//		//数量限制
+//		if(queueSizeLimit != undefined) {
+//			queueSizeLimit = +queueSizeLimit;
+//		}else {
+//			queueSizeLimit = 999;
+//		}
+//		var auto = queueSizeLimit==1 ? true : false;
+//		$this.uploadify({
+//			'preventCaching': false,
+//			'queueSizeLimit': queueSizeLimit,
+//			'auto' : auto,
+//			'fileObjName': 'upfile',
+//			'height'        : 30,
+//			'swf'           : comUtil.scriptsUrl('libs/uploadify/uploadify.swf'),
+//			'uploader'      : comUtil.absUrl(constUtil.ueditorUpload),
+//			'width'         : 120,
+//			'fileSizeLimit' : '2MB',
+//			'formData' : $this.data(),
+//			'fileTypeExts' : fileTypes,
+//			'onInit' : function(instance) {
+//							
+//			},
+//			'onSelect': function(file) {
+//				
+//			},
+//			'onUploadComplete': function(file) {
+//				//$(id).siblings(':button').hide();
+//			},
+//			'onCancel': function(file) {
+//				
+//			}
+//		});	
+//	};
+	layer.uploadImages = function(btn) {//上传图片
 		var id = "#"+btn;
 		var $this = $(id);
 		if($this.length == 0) {//不存在
@@ -34,7 +93,12 @@ define([
 		//验证参数添加
 		var attrs = {type:'hidden', id:btn+'_hidden', name:btn+'_hidden'};
 		var hiddenn_attrs = comUtil.getValidateAttrs($(id), attrs);
-
+		var fileTypes = $this.data('filetypes') || '*.gif; *.jpg; *.png; *.bmp; *.jpeg';//上传文件限制
+		var fileSize = $this.data('filesize') || '2MB';//上传文件尺寸限制
+		var uploadType = $this.data('upload') || 'image';//上传类型 分为file和image
+		var uploadMsg = uploadType=='image' ? '图片' : '文件';//提示信息
+		var ajax = $this.data('ajax') || comUtil.absUrl(constUtil.ueditorUpload);//上传路径自定义
+		
 		var is_crop = $this.data('crop');//是否显示裁剪按钮
 		var crop_url = $this.data('cropUrl');//裁剪路径
 
@@ -61,11 +125,11 @@ define([
 			'fileObjName': 'upfile',
 			'height'        : 30,
 			'swf'           : comUtil.scriptsUrl('libs/uploadify/uploadify.swf'),
-			'uploader'      : comUtil.absUrl(constUtil.ueditorUpload),
+			'uploader'      : ajax,
 			'width'         : 120,
-			'fileSizeLimit' : '2MB',
+			'fileSizeLimit' : fileSize,
 			'formData' : $this.data(),
-			'fileTypeExts' : '*.gif; *.jpg; *.png; *.bmp; *.jpeg',
+			'fileTypeExts' : fileTypes,
 			'onInit' : function(instance) {
 							
 							if(button.length == 0) {
@@ -90,7 +154,8 @@ define([
 								parent.append(div);
 							}
 							div.delegate(':button.btn-warning', 'click', function() {
-									if(!confirm('您确定要删除该图片吗？'))
+								
+								if(!confirm('您确定要删除该'+uploadMsg+'吗？'))
 										return false;
 										var has = [];
 										var strHas = [];
@@ -212,7 +277,7 @@ define([
 							var intFileValue = +image.imageid;
 							//判断是否重复
 							if($.inArray(intFileValue, has) >= 0) {
-								alert('该图片已上传过！');
+								alert('该'+uploadMsg+'已上传过！');
 								return;
 							}
 

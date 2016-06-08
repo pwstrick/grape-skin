@@ -3,8 +3,9 @@ define([
 	'shortcutView',
 	'viewUtil',
 	'listView',
-	'listModel'
-], function($, shortcut, viewUtil, listView, listModel) {
+	'listModel',
+	'uploadifyView'
+], function($, shortcut, viewUtil, listView, listModel, uploadifyView) {
   var initialize = function() {
 		shortcut.allNeed();
 		var model = new listModel();
@@ -13,6 +14,10 @@ define([
 		viewUtil.selectAll();//选中全部
 		view.dragsort();
 		view.listBtn();//与多选框配合按钮
+		//上传文件的按钮
+		$('input[type=file]').each(function() {
+			uploadifyView.uploadImages($(this).attr('id'));
+		});
   };
   return { 
     initialize: initialize
