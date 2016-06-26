@@ -45,6 +45,26 @@ define([
 				modelUtil.comPost(ajax, $this, params, fn);
 			});
 		},
+		downloadBtn: function() {//下载按钮
+			$('button[data-type=download]').click(function() {
+				var $this = $(this);
+				var btn = $this.data('btn'),
+					url = $this.data('url');
+				var btns = [];
+				if(btn) {
+					btns = btn.split(',');
+				}
+				var params = [];
+				$.each(btns, function(index, value) {
+					params.push(value+'='+ encodeURIComponent($('#'+value).val()));
+				});
+				url += '?' + params.join('&');
+				var iframe = document.createElement('iframe');
+				iframe.src = url;
+				iframe.style.display = "none";
+				document.body.appendChild(iframe);
+			});
+		},
 		dragsort: function() {//拖动排序
 			var $drag = $('[data-type=dragsort]');
 			var trs = $drag.children('tr');
