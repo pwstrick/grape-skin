@@ -1855,6 +1855,7 @@ label.dib{
 	list-style: none;
 	margin:0;
 	padding:5px 5px 0;
+	font-size: 0;
 }
 .menu-tabs li{
 	padding:5px 3px 5px 10px;
@@ -1863,6 +1864,8 @@ label.dib{
 	border-top:2px solid #CCC;
 	border-bottom:0;
 	cursor: pointer;
+	font-size: 12px;
+	margin-right: 5px;
 }
 .menu-tabs li.active{
 	border-top:2px solid #006dcc;

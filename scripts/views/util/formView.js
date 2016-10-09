@@ -3,6 +3,7 @@ $(document).ready(function() {
 		var $this = $(this);
 		var ajax = $this.data('aurl');//ajax请求地址
 		var reload = $this.data('reload');
+		var prompt = $this.data('prompt');//需要输入不通过理由
 		if(ajax) {
 			var params = {};
 			$.each($this.data(), function(key ,value) {
@@ -13,7 +14,10 @@ $(document).ready(function() {
 			});
 			
 			$this.change(function() {
-				$.extend(true, params, {value:$(this).val()});			
+				var $this = $(this);
+				var currentVal = $this.val();
+				
+				$.extend(true, params, {value:currentVal});			
 				//params['value'] = $(this).val();
 				$.post(ajax, params, function(data) {
 					var json = eval('('+data+')');
@@ -22,7 +26,30 @@ $(document).ready(function() {
 							window.location.reload();
 						}, 2000)
 					}
-					alert(json.msg);
+					if(currentVal == prompt) {
+						var id = json.data.id,
+							pajaxUrl = $this.data('purl');
+						//弹出一个输入层
+						var attrs = {
+							title: '请输入理由',
+							content: '<textarea id="reason" rows="5" cols="10"/>',
+							okValue: '提交',
+							ok: function() {
+								var reason = $.trim($('#reason').val());
+								if(reason.length == 0) {
+									alert('请输入理由');
+									return;
+								}
+								$.post(pajaxUrl, {id:id, reason:reason}, function() {
+									alert(json.msg);
+								});
+							}
+						};
+						dialog(attrs).showModal();
+					}else {
+						alert(json.msg);
+					}
+				
 				});
 			});
 		}

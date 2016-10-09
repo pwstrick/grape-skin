@@ -3,6 +3,7 @@ define([
 	'constUtil',
 	'dialogView',
 	'uploadify'
+	//'uploadify_five'
 ], function (comUtil, constUtil, dialog) {
 	var layer ={};
 	/**
@@ -27,56 +28,6 @@ define([
 		inner.append($('<button>',{'class':'btn btn-warning', 'type':'button', 'data-id':imageid}).html('删除'));
 		div.append(inner);
 	};
-//	layer.uploadFiles = function(btn) {//上传文件
-//		var id = "#"+btn;
-//		var $this = $(id);
-//		if($this.length == 0) {//不存在
-//			return;
-//		}
-//		var parent =  $this.parent();
-//		var button =  $this.siblings(':button');//上传按钮
-//		var div =  $this.siblings('div.uploadify-upload-files');//已上传的文件列表
-//		var hidden =  $this.siblings('input[type=hidden]');//隐藏域按钮保存file的ID
-//		var initImageID = $(id).data('ids');
-//		var initImageUrl = $(id).data('urls');
-//		var queueSizeLimit = $(id).data('queuelimit');
-//		var fileTypes = $this.data('filetypes') || '*';
-//		//验证参数添加
-//		var attrs = {type:'hidden', id:btn+'_hidden', name:btn+'_hidden'};
-//		var hiddenn_attrs = comUtil.getValidateAttrs($(id), attrs);
-//		//数量限制
-//		if(queueSizeLimit != undefined) {
-//			queueSizeLimit = +queueSizeLimit;
-//		}else {
-//			queueSizeLimit = 999;
-//		}
-//		var auto = queueSizeLimit==1 ? true : false;
-//		$this.uploadify({
-//			'preventCaching': false,
-//			'queueSizeLimit': queueSizeLimit,
-//			'auto' : auto,
-//			'fileObjName': 'upfile',
-//			'height'        : 30,
-//			'swf'           : comUtil.scriptsUrl('libs/uploadify/uploadify.swf'),
-//			'uploader'      : comUtil.absUrl(constUtil.ueditorUpload),
-//			'width'         : 120,
-//			'fileSizeLimit' : '2MB',
-//			'formData' : $this.data(),
-//			'fileTypeExts' : fileTypes,
-//			'onInit' : function(instance) {
-//							
-//			},
-//			'onSelect': function(file) {
-//				
-//			},
-//			'onUploadComplete': function(file) {
-//				//$(id).siblings(':button').hide();
-//			},
-//			'onCancel': function(file) {
-//				
-//			}
-//		});	
-//	};
 	layer.uploadImages = function(btn) {//上传图片
 		var id = "#"+btn;
 		var $this = $(id);
@@ -118,6 +69,8 @@ define([
 //		}
 		
 		var auto = queueSizeLimit==1 ? true : false;
+//		$this.uploadifive({
+//			'uploadScript': ajax,
 		$this.uploadify({
 			'preventCaching': false,
 			'queueSizeLimit': queueSizeLimit,

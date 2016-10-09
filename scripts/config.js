@@ -21,6 +21,7 @@ var require = {
     masked: '../../libs/jquery/masked',
     lightbox: '../../libs/lightbox/lightbox',
     uploadify: '../../libs/uploadify/jquery.uploadify',
+    uploadify_five: '../../libs/uploadify/jquery.uploadifive',
   	backbone: '../../libs/backbone/backbone',
   	underscore: '../../libs/underscore/underscore',
   	cropzoom: '../../libs/cropzoom/js/jquery.cropzoom',
@@ -80,7 +81,9 @@ var require = {
     listModel: '../../models/list/listModel',
     listView: '../../views/list/listView',
     formModel: '../../models/form/formModel',
-    formView: '../../views/form/formView'
+    formView: '../../views/form/formView',
+    chartModel: '../../models/chart/chartModel',
+    chartView: '../../views/chart/chartView'
   },
   shim: {
     'backbone': {

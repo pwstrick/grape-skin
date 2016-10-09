@@ -54,10 +54,12 @@ define([
 			//包括按钮与列表页面中的链接
 			$('[data-type=iframe],[data-type=aiframe]').click(function() {
 				var $this = $(this);
-				var parent = window.parent.document;
+				var parent = window.parent.document;//父级
 				var $fluid = $(parent).find('#row_fluid');
 				var order = $fluid.children(':last').data('order');
 				var $ul = $(parent).find('#breadcrumb').find('ul');
+				//获取当前iframe
+				var currentIframe = $ul.find('li.active').data('target'); 
 				order++;
 				var height = $this.data('height') || 1000;
 				
@@ -102,7 +104,7 @@ define([
 					"src":href, "width":"100%", "height":height});
 				$fluid.append(iframe);
 				var title = $this.data('title');
-				var $li = $('<li data-target="#iframe'+order+'">'+title+'<i class="icon-remove"></i></li>');
+				var $li = $('<li data-parent="'+currentIframe+'" data-target="#iframe'+order+'">'+title+'<i class="icon-remove"></i></li>');
 				$ul.append($li);
 				$(parent).find('.menu-tabs>li:last').click();
 				//$li.click();

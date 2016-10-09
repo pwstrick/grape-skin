@@ -101,6 +101,7 @@ define([
 					var layer = $form.data('layer');//如果是弹出层
 					var reload = $form.data('reload');//当前页面刷新
 					var close = $form.data('close');//iframe页面关闭
+					var parentReload = $form.data('parentReload');//刷新父级iframe页面
 					//如果有href 就做跳转
 					if(href !== undefined){
 						comUtil.setReloadTimeout(500, href);
@@ -110,12 +111,20 @@ define([
 						comUtil.setReloadTimeout();
 					if(close) {
 						//console.log(window.frameElement.id)
-						var i = '#breadcrumb li[data-target=#'+window.frameElement.id+']>i';
-						var parent = window.parent.document;
+						var li = '#breadcrumb li[data-target=#'+window.frameElement.id+']';
+						var i = li+'>i';
+						var parentDoc = window.parent.document;
 						//var scrollTop = 0;
 						setTimeout(function() {
-							$(parent).scrollTop(0);
-							$(i, parent).click();
+							if(parentReload) {
+								var $li = $(li, parentDoc);
+								if($li.data('parent')) {
+									$($li.data('parent'), parentDoc)[0].contentWindow.location.reload();
+								}
+							}
+							//parent.location.reload();
+							$(parentDoc).scrollTop(0);
+							$(i, parentDoc).click();
 						}, 500);
 					}
 				}

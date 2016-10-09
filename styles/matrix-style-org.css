@@ -1845,3 +1845,38 @@ label.dib{
 .crop-boxes .btn-container .btn{
 	margin-right: 10px;
 }
+.menu-tabs{
+	list-style: none;
+	margin:0;
+	padding:5px 5px 0;
+	font-size: 0;
+}
+.menu-tabs li{
+	padding:5px 3px 5px 10px;
+	display: inline-block;
+	border:1px solid #CCC;
+	border-top:2px solid #CCC;
+	border-bottom:0;
+	cursor: pointer;
+	font-size: 12px;
+	margin-right: 5px;
+}
+.menu-tabs li.active{
+	border-top:2px solid #006dcc;
+}
+.menu-tabs li i{
+	margin-left:3px;
+}
+/**
+ * 查询列表中的查询条件
+ */
+.controls-row label.dib{
+  float: left;
+  margin:0 10px;
+}
+.controls-row label.dib:first-child{
+  margin-left: 0;
+}
+.autocomplete-container {
+	position: relative;
+}
